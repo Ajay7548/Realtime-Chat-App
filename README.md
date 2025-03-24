@@ -87,7 +87,7 @@ To deploy the application:
 This project is open-source under the MIT License.
 
 ---
-🔗 **Live Demo**: [FullStack Chat App](https://your-live-demo-url.com)
+🔗 **Live Demo**: [FullStack Chat App](https://realtime-chat-app-qjwo.onrender.com)
 
 💡 Contributions are welcome! Feel free to open an issue or pull request. 🚀
 
