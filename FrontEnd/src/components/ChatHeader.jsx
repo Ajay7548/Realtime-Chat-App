@@ -13,7 +13,7 @@ const ChatHeader = () => {
         <div className="flex items-center gap-3">
           {/* Avatar */}
           <div className="avatar p-1">
-            <div className="size-10 rounded-full relative">
+            <div className="size-8 lg:size-10 rounded-full relative">
             <img
                 src={
                   selectedUser._id === authUser._id
@@ -27,7 +27,7 @@ const ChatHeader = () => {
 
           {/* User info */}
           <div>
-            <h3 className="font-medium">{selectedUser.fullName}</h3>
+            <h3 className="font-medium text-md">{selectedUser.fullName}</h3>
             <p className="text-sm text-base-content/70">
               {onlineUsers.includes(selectedUser._id) ? "Online" : "Offline"}
             </p>

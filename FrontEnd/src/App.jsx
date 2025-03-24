@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import HomePage from './pages/HomePage.jsx'
 import SignUpPage from './pages/SignUpPage.jsx'
@@ -11,16 +11,26 @@ import { Loader } from 'lucide-react'
 import Navbar from './components/Navbar.jsx'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { useThemeStore } from './store/useThemeStore.js'
 
 
 const App = () => {
-  const {onlineUsers, authUser, checkAuth, isCheckingAuth } = useAuthStore()
+  const { onlineUsers, authUser, checkAuth, isCheckingAuth } = useAuthStore()
+  console.log({ onlineUsers });
 
-  console.log({onlineUsers});
-  
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+
+
+  const { theme } = useThemeStore();
+  const [_, setForceRender] = useState(0); // Force UI re-render
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    setForceRender((prev) => prev + 1); // Ensure UI updates
+  }, [theme]);
+
 
   console.log(authUser);
   if (isCheckingAuth && !authUser)
@@ -32,20 +42,19 @@ const App = () => {
 
   return (
     <>
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-
-      <div className='h-screen'>
+      <div data-theme={theme}>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <Navbar />
 
         <Routes>
@@ -55,7 +64,6 @@ const App = () => {
           <Route path='/setting' element={<Setting />} />
           <Route path='/profile' element={authUser ? <ProfilePage /> : <Navigate to="/login" />} />
         </Routes>
-        {/* <ToastContainer /> */}
       </div>
     </>
   )
