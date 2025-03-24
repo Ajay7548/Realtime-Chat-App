@@ -23,10 +23,25 @@ app.use(express.json());
 app.use(cookieParser());
 
 // ✅ Updated CORS Configuration
-app.use(cors({
-    origin: [FRONTEND_URL], // Allow frontend domain (update in .env for deployment)
-    credentials: true
-}));
+const allowedOrigins = [
+    "http://localhost:5173", // Development Frontend
+    "https://chat-app-frontend-dn40.onrender.com", // Deployed Frontend
+  ];
+  
+  app.use(
+    cors({
+      origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("CORS policy does not allow this origin"));
+        }
+      },
+      credentials: true, // Allows cookies & auth headers
+    })
+  );
+  
+  app.options("*", cors()); // Handle preflight requests
 
 // Routes
 app.use('/api/auth', authRoutes);
