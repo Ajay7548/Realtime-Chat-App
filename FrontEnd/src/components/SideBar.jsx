@@ -21,7 +21,7 @@ const Sidebar = () => {
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (
-    <aside className="h-full bg-base-200 w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
+    <aside className="h-full bg-base-300 w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
       {/* Sidebar Header */}
       <div className="border-b border-base-300 w-full px-4 py-2">
         <div className="flex items-center gap-2">

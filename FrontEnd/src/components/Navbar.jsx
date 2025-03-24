@@ -1,52 +1,55 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { LogOut, MessageSquare, Moon, Settings, SunIcon, User } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
+import { LogOut, MessageSquare, Settings, User } from "lucide-react";
 
 const Navbar = () => {
-
- 
   const { logout, authUser } = useAuthStore();
+
   return (
-    <div className=" flex items-center px-4 justify-between ">
-      {/* logo  */}
-      <div className="flex gap-2 lg:gap-3 items-center px-1  lg:px-8 py-3">
-        <div className="size-10 lg:size-12 rounded-xl  flex items-center justify-center group-hover:bg-violet-800 transition-colors">
-          <MessageSquare className="size-6 text-primary" />'
-        </div>
-        <Link to="/" className="text-lg lg:text-xl font-bold">
-          Chatty
-        </Link>
-      </div>
+    <header
+      className="bg-base-100 border-b border-base-300 fixed w-full  top-0 z-40 
+    backdrop-blur-lg bg-base-100/80"
+    >
+      <div className="mx-auto px-4 h-16">
+        <div className="flex items-center justify-between h-full">
+          <div className="flex items-center lg:px-2 gap-8">
+            <Link to="/" className="flex items-center gap-2.5 hover:opacity-80 transition-all">
+              <div className="size-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <MessageSquare className="w-5 h-5 text-primary" />
+              </div>
+              <h1 className="text-xl font-bold">Chatty</h1>
+            </Link>
+          </div>
 
-      {/* side content  */}
-      <div className="flex gap-2  justify-between">
-      
-
-        <Link to={'/setting'} className={`btn btn-sm gap-2`}>
-          <Settings className="size-4 lg:size-5" />
-          {/* <span className=" hidden text-base sm:inline">Settings</span> */}
-        </Link>
-
-        
-        
-
-        {authUser && (
-          <>
-            <Link to={'/profile'} className={`btn btn-sm gap-2`}>
-              <User className="size-4 lg:size-5" />
-              {/* <span className="hidden text-base sm:inline">Profile</span> */}
+          <div className="flex items-center gap-2">
+            <Link
+              to={"/setting"}
+              className={`
+              btn btn-sm gap-2 transition-colors
+              
+              `}
+            >
+              <Settings className="w-4 h-4" />
+              <span className="hidden sm:inline">Settings</span>
             </Link>
 
-            <button className=" btn btn-sm  cursor-pointer flex gap-2 items-center" onClick={logout}>
-              <LogOut className="size-4 lg:size-5" />
-              {/* <span className="hidden sm:inline">Logout</span> */}
-            </button>
-          </>
-        )}
+            {authUser && (
+              <>
+                <Link to={"/profile"} className={`btn btn-sm gap-2`}>
+                  <User className="size-5" />
+                  <span className="hidden sm:inline">Profile</span>
+                </Link>
+
+                <button className="flex gap-2 items-center btn btn-sm" onClick={logout}>
+                  <LogOut className="size-5" />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              </>
+            )}
+          </div>
+        </div>
       </div>
-    </div>
+    </header>
   );
 };
-
 export default Navbar;
