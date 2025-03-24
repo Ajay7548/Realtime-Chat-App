@@ -13,6 +13,7 @@ A powerful real-time chat application with modern UI/UX, built using a full-stac
 - 📌 **Group Chats & Direct Messages** – Private and group conversations.
 - 🔔 **Live Notifications** – Stay updated with real-time message alerts.
 - 🌐 **Fully Responsive** – Optimized for both desktop and mobile devices.
+- 🌙 Multiple Theme Support using DaisyUI
 
 ## 🛠️ Tech Stack
 - **Frontend**: React, Vite, Tailwind CSS
