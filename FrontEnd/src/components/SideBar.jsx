@@ -9,6 +9,7 @@ const Sidebar = () => {
   const { getUsers, users, selectedUser, setSelectedUser, isUsersLoading } = useChatStore();
   const { onlineUsers, authUser } = useAuthStore();
   const [showOnlineOnly, setShowOnlineOnly] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     getUsers();
@@ -18,14 +19,16 @@ const Sidebar = () => {
     console.log("Auth User Data:", authUser);
   }, [authUser]);
 
-  const filteredUsers = showOnlineOnly
-    ? users.filter((user) => onlineUsers.includes(user._id))
-    : users;
-
+  const filteredUsers = users.filter(
+    (user) =>
+      user.fullName.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (!showOnlineOnly || onlineUsers.includes(user._id))
+  );
+  
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (
-    <aside className="h-full w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
+    <aside className="h-full w-20 bg-base-300 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
       {/* Sidebar Header */}
       <div className="border-b border-base-300 w-full px-6 py-5">
         <div className="flex items-center gap-2">
@@ -35,16 +38,15 @@ const Sidebar = () => {
 
         {/* Online Users Toggle */}
         <div className="mt-3 hidden lg:flex items-center gap-2">
-          <label className="cursor-pointer flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={showOnlineOnly}
-              onChange={(e) => setShowOnlineOnly(e.target.checked)}
-              className="checkbox checkbox-sm"
-            />
-            <span className="text-sm">Show online only</span>
-          </label>
-        </div>
+  <input
+    type="text"
+    placeholder="Search user..."
+    value={searchQuery}
+    onChange={(e) => setSearchQuery(e.target.value)}
+    className="input input-sm border rounded px-2 py-1 w-full"
+  />
+</div>
+
       </div>
 
       {/* User List */}
