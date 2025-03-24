@@ -27,20 +27,6 @@ export const signup = async (req, res) => {
             password: hashPassword
         })
 
-        // if (newUser) {
-        //     //generate JWTTokens
-        //     generateToken(newUser._id, res)
-        //     await newUser.save({
-        //         _id: newUser._id,
-        //         fullName: newUser.fullName,
-        //         email: newUser.email,
-        //         profilePic: newUser.profilePic
-        //     })
-
-        //     res.status(201).json({})
-        // } else {
-        //     res.status(400).json({ message: "Invalid User data" })
-        // }
         await newUser.save(); // Save to DB first
 
         // Generate JWT token
