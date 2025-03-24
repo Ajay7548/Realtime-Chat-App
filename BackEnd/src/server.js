@@ -29,15 +29,12 @@ app.use('/api/messages', messageRoutes);
 // ✅ Only serve static files if backend & frontend are in the same deployment
 // Remove if frontend is hosted separately (e.g., on Vercel, Netlify)
 if (process.env.NODE_ENV === 'production') {
-    const path = await import('path');
-    const __dirname = path.resolve();
-    app.use(express.static(path.join(__dirname, 'dist')));
-
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-    });
-}
-
+    app.use(express.static(path.join(__dirname, "../../FrontEnd/dist")));
+  }
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../FrontEnd/dist", "index.html"));
+  });
+  
 // Start server
 server.listen(PORT, () => {
     console.log(`✅ Server is running on port: ${PORT}`);
