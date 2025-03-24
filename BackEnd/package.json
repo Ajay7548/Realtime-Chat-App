@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "build": "echo 'No build step required'",
+    "build": "echo 'No build'",
     "start": "node src/server.js"
   },
   "keywords": [],
@@ -14,7 +14,6 @@
   "type": "module",
   "dependencies": {
     "bcryptjs": "^3.0.2",
-    "build": "^0.1.4",
     "chat-app": "file:..",
     "cloudinary": "^2.5.1",
     "cookie-parser": "^1.4.7",
@@ -24,7 +23,6 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.12.1",
     "npm": "^11.2.0",
-    "run": "^1.5.0",
     "socket.io": "^4.8.1"
   },
   "devDependencies": {

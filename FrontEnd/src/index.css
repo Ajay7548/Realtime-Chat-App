@@ -1,3 +1,9 @@
-@import "tailwindcss";
-@plugin "daisyui";
+/* @import "daisyui"; */
 
+<<<<<<< HEAD
+=======
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+>>>>>>> b9b408ef095908d35808851a64a6c8549950f1f7

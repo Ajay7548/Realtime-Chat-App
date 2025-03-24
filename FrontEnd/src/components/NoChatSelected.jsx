@@ -3,7 +3,7 @@ import { MessageSquare } from 'lucide-react'
 
 const NoChatMessage = () => {
     return (
-        <div className="w-full flex flex-1 flex-col items-center justify-center p-16 bg-base-100/50">
+        <div className="w-full flex flex-1 flex-col items-center justify-center p-5 lg:p-16 bg-base-100/50">
             <div className="max-w-md text-center space-y-6">
                 {/* Icon Display */}
                 <div className="flex justify-center gap-4 mb-4">
@@ -16,7 +16,7 @@ const NoChatMessage = () => {
                         </div>
                     </div>
                 </div>
-                <h2 className='font-bold text-2xl '>Welcome to Chatty!</h2>
+                <h2 className='font-bold text-xl lg:text-2xl '>Welcome to Chatty!</h2>
                 <p className='text-center text-base-content/60'>Select a converstaion from the sidebar to start chatting</p>
             </div>
         </div>

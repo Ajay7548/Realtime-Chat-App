@@ -1,28 +1,64 @@
-import express from 'express'
-import authRoutes from './routes/auth.route.js'
-import messageRoutes from './routes/message.route.js'
-import dotenv from 'dotenv'
-import {connectToDatabase} from './lib/db.js'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
-import {app,server} from './lib/socket.js'
+import express from 'express';
+import authRoutes from './routes/auth.route.js';
+import messageRoutes from './routes/message.route.js';
+import dotenv from 'dotenv';
+import { connectToDatabase } from './lib/db.js';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import { app, server } from './lib/socket.js'; // Import WebSocket server
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-dotenv.config()
+dotenv.config();
 
-const PORT = process.env.PORT
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-app.use(express.json())
-app.use(cookieParser())
-app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true
-}))
-app.use('/api/auth',authRoutes)
-app.use('/api/messages',messageRoutes)
+const PORT = process.env.PORT || 5001;
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173"; // Define frontend URL
 
-server.listen(PORT, ()=>{
-    console.log("Server is running on Port:",PORT);
-    connectToDatabase()
-})
+// Middleware
+app.use(express.json());
+app.use(cookieParser());
 
+// ✅ Updated CORS Configuration
+const allowedOrigins = [
+    "http://localhost:5173", // Development Frontend
+    "https://chat-app-frontend-dn40.onrender.com", // Deployed Frontend
+  ];
+  
+  app.use(
+    cors({
+      origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+          callback(null, true);
+        } else {
+          callback(new Error("CORS policy does not allow this origin"));
+        }
+      },
+      credentials: true, // Allows cookies & auth headers
+    })
+  );
+  
+  app.options("*", cors()); // Handle preflight requests
 
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/messages', messageRoutes);
+
+// ✅ Only serve static files if backend & frontend are in the same deployment
+// Remove if frontend is hosted separately (e.g., on Vercel, Netlify)
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, "../../FrontEnd/dist")));
+}
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../FrontEnd/dist", "index.html"));
+});
+
+// Start server
+server.listen(PORT, () => {
+    console.log(`✅ Server is running on port: ${PORT}`);
+    connectToDatabase();
+});

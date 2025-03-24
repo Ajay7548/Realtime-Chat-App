@@ -3,12 +3,17 @@ import axiosInstance from '../lib/axios.js'
 import { toast } from 'react-toastify'
 import {io} from 'socket.io-client'
 
-const BASE_URL = 'http://localhost:5001'
+const BASE_URL = import.meta.env.MODE === "development"
+  ? "http://localhost:5001"
+  : import.meta.env.VITE_API_BASE_URL; // Use Render backend URL
 
+
+
+  
 export const useAuthStore = create((set,get) => ({
   authUser: null,
   isSignInUp: false,
-  isLoginIn: false,
+  isLoggingIn: false,
   isUpdateingProfile: false,
   isCheckingAuth: true,
   onlineUsers:[],
@@ -17,7 +22,7 @@ export const useAuthStore = create((set,get) => ({
 
   checkAuth: async () => {
     try {
-      const res = await axiosInstance.get("/auth/check")
+      const res = await axiosInstance.get("auth/check")
       set({ authUser: res.data })
       get().connectSocket()
     } catch (error) {
@@ -88,24 +93,28 @@ export const useAuthStore = create((set,get) => ({
       }
   },
 
-  connectSocket : () =>{
-    const {authUser} = get()
-    if(!authUser || get().socket?.connected
-    ) return
-
-      const socket = io(BASE_URL,{
-        query:{
-          userId:authUser._id
-        }
-      })
-
-      socket.connect()
-      set({socket:socket})
-
-      socket.on("getOnlineUsers" ,(userIds) =>{
-        set({onlineUsers:userIds})
-      })
+  connectSocket: () => {
+    const { authUser, socket } = get();
+    if (!authUser || socket?.connected) return;
+  
+    const newSocket = io(import.meta.env.VITE_API_BASE_URL, {
+      query: {
+        userId: authUser._id
+      },
+      transports: ["websocket"], // Ensure WebSocket connection
+      withCredentials: true // Include credentials
+    });
+  
+    newSocket.connect();
+    set({ socket: newSocket });
+  
+    newSocket.on("getOnlineUsers", (userIds) => {
+      set({ onlineUsers: userIds });
+    });
+  
+    console.log("Socket connected:", newSocket);
   },
+  
   
   disconnectSocket: () => {
     const { socket } = get()
