@@ -6,8 +6,14 @@ import { connectToDatabase } from './lib/db.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { app, server } from './lib/socket.js'; // Import WebSocket server
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const PORT = process.env.PORT || 5001;
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173"; // Define frontend URL
@@ -30,11 +36,12 @@ app.use('/api/messages', messageRoutes);
 // Remove if frontend is hosted separately (e.g., on Vercel, Netlify)
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, "../../FrontEnd/dist")));
-  }
-  app.get("*", (req, res) => {
+}
+
+app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../../FrontEnd/dist", "index.html"));
-  });
-  
+});
+
 // Start server
 server.listen(PORT, () => {
     console.log(`✅ Server is running on port: ${PORT}`);
