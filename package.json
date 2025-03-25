@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Ajay7548/Realtime-Chat-App/issues"
   },
-  "homepage": "https://github.com/Ajay7548/Realtime-Chat-App#readme"
+  "homepage": "https://github.com/Ajay7548/Realtime-Chat-App#readme",
+  "dependencies": {
+    "nvm": "^0.0.4"
+  }
 }
