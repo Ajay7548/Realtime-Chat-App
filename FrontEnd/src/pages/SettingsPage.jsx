@@ -1,6 +1,5 @@
 import { THEMES } from "../constants";
 import { useThemeStore } from "../store/useThemeStore";
-import { Send } from "lucide-react";
 
 const SettingsPage = () => {
   const { theme, setTheme } = useThemeStore();
@@ -37,8 +36,6 @@ const SettingsPage = () => {
             </button>
           ))}
         </div>
-
-        
       </div>
     </div>
   );

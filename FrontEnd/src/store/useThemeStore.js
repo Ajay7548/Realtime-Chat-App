@@ -2,9 +2,8 @@ import { create } from "zustand";
 
 export const useThemeStore = create((set) => ({
   theme: localStorage.getItem("chat-theme") || "coffee",
-  setTheme: (newTheme) => {
-    localStorage.setItem("chat-theme", newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-    set({ theme: newTheme }); // Force Zustand to update state
+  setTheme: (theme) => {
+    localStorage.setItem("chat-theme", theme);
+    set({ theme });
   },
 }));
