@@ -1,23 +1,22 @@
 {
-  "name": "chat-app",
+  "name": "realtime-chat-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "![FullStack Chat App](https://your-image-url.com/banner.png)",
   "main": "index.js",
   "scripts": {
-    "build": "npm install --prefix BackEnd && npm install --prefix FrontEnd && npm run build --prefix FrontEnd",
-    "start": "npm run start --prefix BackEnd"
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ajay7548/Realtime-Chat-App.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17"
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Ajay7548/Realtime-Chat-App/issues"
   },
-  "dependencies": {
-    "daisyui": "^4.12.24",
-    "react-hot-toast": "^2.5.2"
-  }
+  "homepage": "https://github.com/Ajay7548/Realtime-Chat-App#readme"
 }
