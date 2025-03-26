@@ -1,7 +1,7 @@
 # 💬 Realtime Chat App  
 
-![Chat App Hero](<img width="931" alt="frontchat" src="https://github.com/user-attachments/assets/0634fa0e-43d3-4257-9421-eddc0bce2034" />
-)  
+![Chat App Hero](<img width="931" alt="frontchat" src="https://github.com/user-attachments/assets/18b3aff2-eacb-4983-b661-11c6cd503aa6" />
+)
 
 A **modern, responsive, and theme-based** real-time chat application built with **MERN Stack & Socket.io**. The app supports **one-on-one messaging**, features **multiple themes** with DaisyUI, and delivers a **smooth, real-time experience**.  
 
@@ -12,13 +12,13 @@ A **modern, responsive, and theme-based** real-time chat application built with 
 
 ## ⚙️ Features  
 
-✅ **Real-time One-on-One Chat** (via **Socket.io**)  
-✅ **Multiple Themes** (DaisyUI)  
-✅ **User Authentication** (JWT + bcrypt)  
-✅ **Online Status**  
-✅ **Emoji Support & Message Reactions**  
-✅ **Dark & Light Mode** (Theme Toggle)   
-✅ **Optimized UI with Smooth Animations**  
+👉 **Real-time One-on-One Chat** (via **Socket.io**)  
+👉 **Multiple Themes** (DaisyUI)  
+👉 **User Authentication** (JWT + bcrypt)  
+👉 **Online Status**  
+👉 **Emoji Support & Message Reactions**  
+👉 **Dark & Light Mode** (Theme Toggle)   
+👉 **Optimized UI with Smooth Animations**  
 
 ---
 
@@ -36,15 +36,17 @@ A **modern, responsive, and theme-based** real-time chat application built with 
 
 ## 🖼️ Screenshots  
 
-| 🔐 **Login Page** |
-| ![Login](<img width="938" alt="loginChat" src="https://github.com/user-attachments/assets/035ff7d2-12f5-44c4-93f5-0f638fd554d8" />)
+### 🔐 **Login Page**  
+![Login](<img width="203" alt="loginChat" src="https://github.com/user-attachments/assets/5b3dd7e4-e82a-48de-adb9-4082f2870b55" />
+)  
 
-💬 **Chat Interface** |
-| ![Chat](<img width="938" alt="loginChat" src="https://github.com/user-attachments/assets/74a432eb-b5cb-41d4-91b8-b619ad83d673" />)
+### 💬 **Chat Interface**  
+![Chat](<img width="914" alt="message" src="https://github.com/user-attachments/assets/f17ceea6-5d83-4a74-9fd6-314f304e7dde" />
+)  
 
-🎨 **Theme Variations** |
-| ![Themes](<img width="925" alt="daisyui" src="https://github.com/user-attachments/assets/e41c7f2c-aa5d-4320-bf10-c2e4dc309576" /)
-
+### 🎨 **Theme Variations**  
+![Themes](<img width="925" alt="daisyui" src="https://github.com/user-attachments/assets/34db833e-9283-4c33-8c09-d80414f761d1" />
+)  
 
 🎨 **Sleek UI (DaisyUI)** | ⚡ **Smooth Performance** | 🌙 **Dark Mode Support**  
 
@@ -103,7 +105,7 @@ Go to: **http://localhost:5173**
 
 ---
 
-## 🔮 Upcoming Features  
+## 💎 Upcoming Features  
 
 🚀 **Voice & Video Calls**  
 📌 **Message Search & Filters**  
@@ -129,4 +131,3 @@ This project is **MIT Licensed**.
 ---
 
 🔥 **Enjoy chatting with a beautiful, theme-based UI!** 🔥  
-
