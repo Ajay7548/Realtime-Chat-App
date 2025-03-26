@@ -36,12 +36,15 @@ A **modern, responsive, and theme-based** real-time chat application built with 
 
 ## 🖼️ Screenshots  
 
-| 🔐 **Login Page** | 💬 **Chat Interface** | 🎨 **Theme Variations** |
-|------------------|---------------------|------------------|
-| ![Login](<img width="938" alt="loginChat" src="https://github.com/user-attachments/assets/035ff7d2-12f5-44c4-93f5-0f638fd554d8" />
-| ![Chat](<img width="938" alt="loginChat" src="https://github.com/user-attachments/assets/74a432eb-b5cb-41d4-91b8-b619ad83d673" />
-| ![Themes](<img width="925" alt="daisyui" src="https://github.com/user-attachments/assets/e41c7f2c-aa5d-4320-bf10-c2e4dc309576" />
-|
+| 🔐 **Login Page** |
+| ![Login](<img width="938" alt="loginChat" src="https://github.com/user-attachments/assets/035ff7d2-12f5-44c4-93f5-0f638fd554d8" />)
+
+💬 **Chat Interface** |
+| ![Chat](<img width="938" alt="loginChat" src="https://github.com/user-attachments/assets/74a432eb-b5cb-41d4-91b8-b619ad83d673" />)
+
+🎨 **Theme Variations** |
+| ![Themes](<img width="925" alt="daisyui" src="https://github.com/user-attachments/assets/e41c7f2c-aa5d-4320-bf10-c2e4dc309576" /)
+
 
 🎨 **Sleek UI (DaisyUI)** | ⚡ **Smooth Performance** | 🌙 **Dark Mode Support**  
 
