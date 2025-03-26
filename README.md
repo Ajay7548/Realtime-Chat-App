@@ -1,7 +1,5 @@
 # 💬 Realtime Chat App  
 
-![Chat App](<img width="931" alt="frontchat" src="https://github.com/user-attachments/assets/f202ec91-74fe-402d-9634-fb4c4787bd82" />)
-
 A **modern, responsive, and theme-based** real-time chat application built with **MERN Stack & Socket.io**. The app supports **one-on-one messaging**, features **multiple themes** with DaisyUI, and delivers a **smooth, real-time experience**.  
 
 🔗 **Live Demo:** [Click Here](https://realtime-chat-app-asqu.onrender.com)  
@@ -36,15 +34,18 @@ A **modern, responsive, and theme-based** real-time chat application built with 
 ## 🖼️ Screenshots  
 
 ### 🔐 **Login Page**  
-![Login](<img width="203" alt="loginChat" src="https://github.com/user-attachments/assets/5b3dd7e4-e82a-48de-adb9-4082f2870b55" />
+![Login](<img width="203" alt="loginChat" src="https://github.com/user-attachments/assets/385aff57-fbd8-4882-8ae1-a07c022bf246" />
+
 )  
 
 ### 💬 **Chat Interface**  
-![Chat](<img width="914" alt="message" src="https://github.com/user-attachments/assets/f17ceea6-5d83-4a74-9fd6-314f304e7dde" />
+![Chat](<img width="914" alt="message" src="https://github.com/user-attachments/assets/9adf6dd0-417e-41a5-ad35-43a216d84f58" />
+
 )  
 
 ### 🎨 **Theme Variations**  
-![Themes](<img width="925" alt="daisyui" src="https://github.com/user-attachments/assets/34db833e-9283-4c33-8c09-d80414f761d1" />
+![Themes](<img width="925" alt="daisyui" src="https://github.com/user-attachments/assets/c1d5771b-e637-4f91-8b64-8802d1f7164f" />
+
 )  
 
 🎨 **Sleek UI (DaisyUI)** | ⚡ **Smooth Performance** | 🌙 **Dark Mode Support**  
