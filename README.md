@@ -1,6 +1,7 @@
 # 💬 Realtime Chat App  
 
-![Chat App Hero](<img width="931" alt="frontchat" src="https://github.com/user-attachments/assets/18b3aff2-eacb-4983-b661-11c6cd503aa6" />
+![Chat App Hero](<img width="931" alt="frontchat" src="https://github.com/user-attachments/assets/f202ec91-74fe-402d-9634-fb4c4787bd82" />
+
 )
 
 A **modern, responsive, and theme-based** real-time chat application built with **MERN Stack & Socket.io**. The app supports **one-on-one messaging**, features **multiple themes** with DaisyUI, and delivers a **smooth, real-time experience**.  
