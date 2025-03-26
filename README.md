@@ -114,8 +114,6 @@ Go to: **http://localhost:5173**
 
 If you find this project useful, **give it a star ⭐** and share it! 🚀  
 
-📧 **Contact:** ajay@example.com  
-
 ---
 
 ## 📝 License  
