@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useChatStore } from "../store/useChatStore";
 import { useAuthStore } from "../store/useAuthStore";
-import SidebarSkeleton from "./skeletons/SidebarSkeleton";
+import SideBarSkeleton from './skeletons/SideBarSkeleton'
 import { Users, Search } from "lucide-react";
 
 const Sidebar = () => {
@@ -17,7 +17,7 @@ const Sidebar = () => {
     user.fullName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (isUsersLoading) return <SidebarSkeleton />;
+  if (isUsersLoading) return <SideBarSkeleton />;
 
   return (
     <aside className="h-full bg-base-300 w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
