@@ -23,8 +23,8 @@ const Sidebar = () => {
     <aside className="h-full bg-base-300 w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
       <div className="border-b border-base-300 w-full p-5">
         <div className="flex items-center gap-2">
-          <Users className="size-6" />
-          <span className="font-medium text-lg hidden lg:block">Contacts</span>
+          <Users className="size-5" />
+          <span className="font-medium text-lg lg:text-xl  hidden lg:block">Contacts</span>
         </div>
 
         {/* 🔍 Search Input */}
