@@ -18,7 +18,7 @@ const Sidebar = () => {
   if (isUsersLoading) return <SideBarSkeleton />;
 
   return (
-    <aside className="h-full w-80 border-r border-base-300 flex flex-col transition-all duration-200">
+    <aside className="h-full w-[325px] border-r border-base-300 flex flex-col transition-all duration-200">
       {/* 🔝 Header */}
       <div className="px-4 py-2 flex justify-between items-center border-b border-base-300">
         <h2 className="text-lg font-semibold">Chats</h2>
