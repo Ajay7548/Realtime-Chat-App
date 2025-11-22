@@ -2,7 +2,7 @@
 
 A **modern, responsive, and theme-based** real-time chat application built with **MERN Stack & Socket.io**. The app supports **one-on-one messaging**, features **multiple themes** with DaisyUI, and delivers a **smooth, real-time experience**.  
 
-🔗 **Live Demo:** [Click Here](https://realtime-chat-app-asqu.onrender.com)  
+🔗 **Live Demo:** [Click Here](https://tinylink-three-lyart.vercel.app/)  
 🌟 **Star this repo** if you like it! ⭐  
 
 ---
@@ -123,3 +123,4 @@ This project is **MIT Licensed**.
 ---
 
 🔥 **Enjoy chatting with a beautiful, theme-based UI!** 🔥  
+
