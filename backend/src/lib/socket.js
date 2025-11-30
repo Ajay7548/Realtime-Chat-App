@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
 import http from "http";
-import express from 'express'
+import express from "express";
 
 const app = express();
 const server = http.createServer(app);
@@ -26,6 +26,21 @@ io.on("connection", (socket) => {
 
   // io.emit() is used to send events to all the connected clients
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
+
+  // Typing indicator events
+  socket.on("typing", (receiverId) => {
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("userTyping", userId);
+    }
+  });
+
+  socket.on("stopTyping", (receiverId) => {
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("userStoppedTyping", userId);
+    }
+  });
 
   socket.on("disconnect", () => {
     console.log("A user disconnected", socket.id);

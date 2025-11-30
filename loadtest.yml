@@ -1,0 +1,11 @@
+config:
+  target: "wss://realtime-chat-app-asqu.onrender.com/socket.io/?EIO=4&transport=websocket"
+  phases:
+    - duration: 30
+      arrivalRate: 30
+scenarios:
+  - engine: "ws"
+    flow:
+      - send: "hello"
+      - think: 2
+      - send: "test message"

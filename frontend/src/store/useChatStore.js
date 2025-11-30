@@ -9,6 +9,7 @@ export const useChatStore = create((set, get) => ({
   selectedUser: null,
   isUsersLoading: false,
   isMessagesLoading: false,
+  typingUsers: new Set(),
 
   getUsers: async () => {
     set({ isUsersLoading: true });
@@ -36,7 +37,10 @@ export const useChatStore = create((set, get) => ({
   sendMessage: async (messageData) => {
     const { selectedUser, messages } = get();
     try {
-      const res = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
+      const res = await axiosInstance.post(
+        `/messages/send/${selectedUser._id}`,
+        messageData
+      );
       set({ messages: [...messages, res.data] });
     } catch (error) {
       toast.error(error.response.data.message);
@@ -50,11 +54,31 @@ export const useChatStore = create((set, get) => ({
     const socket = useAuthStore.getState().socket;
 
     socket.on("newMessage", (newMessage) => {
-      const isMessageSentFromSelectedUser = newMessage.senderId === selectedUser._id;
+      const isMessageSentFromSelectedUser =
+        newMessage.senderId === selectedUser._id;
       if (!isMessageSentFromSelectedUser) return;
 
       set({
         messages: [...get().messages, newMessage],
+      });
+    });
+
+    // Subscribe to typing events
+    socket.on("userTyping", (userId) => {
+      if (userId === selectedUser._id) {
+        set((state) => {
+          const newTypingUsers = new Set(state.typingUsers);
+          newTypingUsers.add(userId);
+          return { typingUsers: newTypingUsers };
+        });
+      }
+    });
+
+    socket.on("userStoppedTyping", (userId) => {
+      set((state) => {
+        const newTypingUsers = new Set(state.typingUsers);
+        newTypingUsers.delete(userId);
+        return { typingUsers: newTypingUsers };
       });
     });
   },
@@ -62,6 +86,8 @@ export const useChatStore = create((set, get) => ({
   unsubscribeFromMessages: () => {
     const socket = useAuthStore.getState().socket;
     socket.off("newMessage");
+    socket.off("userTyping");
+    socket.off("userStoppedTyping");
   },
 
   setSelectedUser: (selectedUser) => set({ selectedUser }),
