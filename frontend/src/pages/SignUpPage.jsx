@@ -12,6 +12,7 @@ const SignUpPage = () => {
     fullName: "",
     email: "",
     password: "",
+    gender: "other",
   });
 
   const { signup, isSigningUp } = useAuthStore();
@@ -87,6 +88,47 @@ const SignUpPage = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
+              </div>
+            </div>
+
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text font-medium">Gender</span>
+              </label>
+              <div className="flex gap-4">
+                <label className="cursor-pointer flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    checked={formData.gender === "male"}
+                    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                    className="radio radio-primary"
+                  />
+                  <span className="label-text">Male</span>
+                </label>
+                <label className="cursor-pointer flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={formData.gender === "female"}
+                    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                    className="radio radio-primary"
+                  />
+                  <span className="label-text">Female</span>
+                </label>
+                <label className="cursor-pointer flex items-center gap-2">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="other"
+                    checked={formData.gender === "other"}
+                    onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                    className="radio radio-primary"
+                  />
+                  <span className="label-text">Other</span>
+                </label>
               </div>
             </div>
 

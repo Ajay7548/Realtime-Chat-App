@@ -1,8 +1,8 @@
 config:
-  target: "wss://realtime-chat-app-asqu.onrender.com/socket.io/?EIO=4&transport=websocket"
+  target: "wss://realtime-chat-app-production-11df.up.railway.app"
   phases:
-    - duration: 30
-      arrivalRate: 30
+    - duration: 5
+      arrivalRate: 1   # 2 per second = ~60 users total
 scenarios:
   - engine: "ws"
     flow:

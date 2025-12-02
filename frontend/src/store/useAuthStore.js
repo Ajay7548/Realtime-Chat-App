@@ -3,7 +3,8 @@ import { axiosInstance } from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
-const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
+const BASE_URL =
+  import.meta.env.MODE === "development" ? "http://localhost:5001" : "/";
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
@@ -97,6 +98,31 @@ export const useAuthStore = create((set, get) => ({
 
     socket.on("getOnlineUsers", (userIds) => {
       set({ onlineUsers: userIds });
+    });
+
+    // Listen for profile updates from other users
+    socket.on("profileUpdated", (updatedUserData) => {
+      const { authUser } = get();
+
+      // If it's our own profile update, update authUser
+      if (authUser && authUser._id === updatedUserData.userId) {
+        set({
+          authUser: {
+            ...authUser,
+            profilePic: updatedUserData.profilePic,
+          },
+        });
+      }
+
+      // Refresh the chat store to update sidebar with new profile pics
+      // This is safe to call from authStore as it just triggers a refresh
+      if (typeof window !== "undefined") {
+        // Import dynamically to avoid circular dependency
+        import("./useChatStore").then((module) => {
+          const useChatStore = module.useChatStore;
+          useChatStore.getState().getUsers?.();
+        });
+      }
     });
   },
   disconnectSocket: () => {

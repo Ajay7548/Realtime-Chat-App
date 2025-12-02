@@ -49,23 +49,27 @@ export const useChatStore = create((set, get) => ({
 
   subscribeToMessages: () => {
     const { selectedUser } = get();
-    if (!selectedUser) return;
-
     const socket = useAuthStore.getState().socket;
 
     socket.on("newMessage", (newMessage) => {
+      const { selectedUser } = get();
       const isMessageSentFromSelectedUser =
-        newMessage.senderId === selectedUser._id;
-      if (!isMessageSentFromSelectedUser) return;
+        selectedUser?._id === newMessage.senderId;
 
-      set({
-        messages: [...get().messages, newMessage],
-      });
+      if (isMessageSentFromSelectedUser) {
+        set({
+          messages: [...get().messages, newMessage],
+        });
+      }
+
+      // Always refresh the sidebar to update last message and time
+      get().getUsers();
     });
 
     // Subscribe to typing events
     socket.on("userTyping", (userId) => {
-      if (userId === selectedUser._id) {
+      const { selectedUser } = get();
+      if (selectedUser && userId === selectedUser._id) {
         set((state) => {
           const newTypingUsers = new Set(state.typingUsers);
           newTypingUsers.add(userId);

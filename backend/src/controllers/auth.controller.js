@@ -2,16 +2,19 @@ import { generateToken } from "../lib/utilis.js";
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import cloudinary from "../lib/cloudinary.js";
+import { io } from "../lib/socket.js";
 
 export const signup = async (req, res) => {
-  const { fullName, email, password } = req.body;
+  const { fullName, email, password, gender } = req.body;
   try {
     if (!fullName || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ message: "Password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
     }
 
     const user = await User.findOne({ email });
@@ -21,10 +24,31 @@ export const signup = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
+    // Generate gender-specific default profile picture using DiceBear API
+    let defaultProfilePic;
+    if (gender === "male") {
+      // Male avatar with masculine features
+      defaultProfilePic = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
+        fullName
+      )}&hair=short01,short02,short03,short04&facialHair=beardLight,beardMedium`;
+    } else if (gender === "female") {
+      // Female avatar with feminine features
+      defaultProfilePic = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
+        fullName
+      )}&hair=long01,long02,long03,long04&facialHair=blank`;
+    } else {
+      // Gender-neutral avatar
+      defaultProfilePic = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
+        fullName
+      )}`;
+    }
+
     const newUser = new User({
       fullName,
       email,
       password: hashedPassword,
+      profilePic: defaultProfilePic,
+      gender: gender || "other",
     });
 
     if (newUser) {
@@ -37,6 +61,7 @@ export const signup = async (req, res) => {
         fullName: newUser.fullName,
         email: newUser.email,
         profilePic: newUser.profilePic,
+        gender: newUser.gender,
       });
     } else {
       res.status(400).json({ message: "Invalid user data" });
@@ -100,6 +125,13 @@ export const updateProfile = async (req, res) => {
       { profilePic: uploadResponse.secure_url },
       { new: true }
     );
+
+    // Emit socket event to notify all connected users about the profile update
+    io.emit("profileUpdated", {
+      userId: updatedUser._id,
+      profilePic: updatedUser.profilePic,
+      fullName: updatedUser.fullName,
+    });
 
     res.status(200).json(updatedUser);
   } catch (error) {
